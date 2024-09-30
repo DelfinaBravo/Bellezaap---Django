@@ -9,15 +9,15 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 def Home(request):
-    buscar=Personajes.objects.all().order_by('-Codigo')[:3]
+    buscar=Productos.objects.all().order_by('-id_producto')[:3]
     data={
         'forms':buscar
     }
     return render (request,'index.html',data)
 
-def ver_Personajes(request):
+def ver_Productos(request):
     #--->TREAMOS TODOS LOS ELEMENTOS DEL TABLA
-    buscar=Personajes.objects.all()
+    buscar=Productos.objects.all()
     data={
         'forms':buscar
     }
@@ -28,37 +28,37 @@ def ver_Personajes(request):
 @permission_required('App.add_personajes')
 def Agregar(request):
     data={
-        'forms':NuevoPersonaje()
+        'forms':NuevoProducto()
     }
     if request.method=='POST':
-        query=NuevoPersonaje(data=request.POST,files=request.FILES)
+        query=NuevoProducto(data=request.POST,files=request.FILES)
         if  query.is_valid():
             query.save()
             data['mensaje']="Datos Registrados"
         else:
-            data['forms']=NuevoPersonaje
+            data['forms']=NuevoProducto
     return render (request,'Pages/agregar.html',data)
 
 
 @permission_required('App.change_personajes')
-def Modificar_Personajes(request,Codigo):
-    sql=get_object_or_404(Personajes,Codigo=Codigo)
+def Modificar_Productos(request,id_producto):
+    sql=get_object_or_404(Productos,id_producto=id_producto)
     data={
-        'forms':NuevoPersonaje(instance=sql)
+        'forms':NuevoProducto(instance=sql)
     }
     if request.method=='POST':
-        query=NuevoPersonaje(data=request.POST,instance=sql,files=request.FILES)
+        query=NuevoProducto(data=request.POST,instance=sql,files=request.FILES)
         if  query.is_valid():
             query.save()
             data['mensaje']="Datos Modificados Correctamente "
         else:
-            data['forms']=NuevoPersonaje
+            data['forms']=NuevoProducto
     return render (request,'Pages/modificar.html',data)
 
 
 @permission_required('App.delete_personajes')
-def Eliminar_Personajes(request,Codigo):
-    buscar=get_object_or_404(Personajes,Codigo=Codigo)
+def Eliminar_Productos(request,id_producto):
+    buscar=get_object_or_404(Productos,id_producto=id_producto)
     buscar.delete()
     return redirect(to="visualizar")
 

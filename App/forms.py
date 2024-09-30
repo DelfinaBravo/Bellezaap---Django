@@ -3,7 +3,7 @@ from django import forms
 #---> Importamos los Modelos/Tablas
 from .models import *
 
-class NuevoPersonaje(forms.ModelForm):
+class NuevoProducto(forms.ModelForm):
     class Meta:
-        model=Personajes
+        model=Productos
         fields='__all__'
