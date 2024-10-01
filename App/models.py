@@ -8,6 +8,7 @@ class Productos(models.Model):
     precio_producto = models.IntegerField(null=False)
     precioreb_producto = models.IntegerField(null=True)
     stock_producto = models.IntegerField(null=False)
+    imagen_producto = models.ImageField(null=False,upload_to="productos", default="")
     def __int__ (self):
         return self.id_producto
 
