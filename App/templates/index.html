@@ -15,7 +15,7 @@
 
 <body>
     <header class="encabezado">
-       <a href="{% url 'inicio' %}"><img src="{% static 'img/index/logo.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
+       <a href="{% url 'inicio' %}"><img src="{% static 'img/logo.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
         <nav class="menu_selectivo">
             <a href="{% url 'agregar' %}">Agregar</a>
             <!-- Nombre de URL-- visualizar -->
@@ -33,32 +33,69 @@
     </header>
     <section class="intermedio">
         {% block intermedio %}
-        <img src="{% static 'img/Intermedio/intermedio_gif.gif' %}" alt="Carrousel" class="principal_intermedio">
+        <img src="{% static 'img/skincare.gif' %}" alt="Carrousel" class="principal_intermedio">
         {% endblock %}
     </section>
     <main class="contenedor_general">
         {% block cuerpo %}
-        <div class="contenedor_index"> 
+        <!-- <div class="contenedor_index"> 
             <img src="{% static 'img/index/Hogwarts.png' %}" alt="">
             <article class="artitulo">
                 <h2>Colegio Hogwarts de Magia y Hechicería</h2>
                 <p>Es un internado mágico ubicado en Escocia. El castillo se ubica en unas montañas cercanas a un
-                    lago. La localización exacta no ha sido descubierta ya que está escondida por los más poderosos
-                    encantamientos posibles. Sin embargo, de acuerdo con Hermione Granger, no está muy lejos de
-                    Dufftown. Los encantamientos que protegen al castillo son clasificados como encantamientos
-                    anti-aparición y encantos repelentes de Muggles (como el repello muggletum), que lo hacen que ellos
-                    vean unas ruinas antiguas con un letrero que dice "Peligro, prohibido el paso" en lugar del
-                    castillo. Estos encantamientos pueden ser levantados por el Director. La mayoría de los dispositivos
-                    electrónicos no funcionan en los terrenos de Hogwarts. En un momento dado, Hogwarts llegó a
-                    tener 1000 estudiantes.</p>
+                    lago. </p>
                 <h4>Perspectiva general</h4>
                 <p>Hogwarts es una de las tres escuelas más importantes de Europa, que entrena a personas con
-                    habilidades mágicas para que se conviertan en magos y brujas cualificados. Su estatus no es muy
-                    discutido en las novelas de Harry Potter, pero es conocida como un internado de secundaria que
-                    aborda a niños de 11 a 17 años.</p>
+                    habilidades mágicas.</p>
+        </div> -->
+
+        <div class="tarjetas_index">
+            <div class="tarjeta_volteo">
+                <div class="tarjeta_volteo-interno">
+                    <div class="tarjeta_volteo-front">
+                        <img src="{% static 'perfumes/perfume-1.jpeg' %}" alt="">
+                    </div>
+                    <div class="tarjeta_volteo-back">
+                      blablablabla
+                    </div>
+                </div>
+            </div>
+            <div class="tarjeta_volteo">
+                <div class="tarjeta_volteo-interno">
+                    <div class="tarjeta_volteo-front">
+                        <img src="{% static 'perfumes/perfume-2.jpeg' %}" alt="">
+                    </div>
+                    <div class="tarjeta_volteo-back">
+                    blablabla
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta_volteo">
+                <div class="tarjeta_volteo-interno">
+                    <div class="tarjeta_volteo-front">
+                        <img src="{% static 'perfumes/perfume-3.jpeg' %}" alt="">
+                    </div>
+                    <div class="tarjeta_volteo-back">
+                        blablabla
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta_volteo">
+                <div class="tarjeta_volteo-interno">
+                    <div class="tarjeta_volteo-front">
+                        <img src="{% static 'perfumes/perfume-4.jpeg' %}" alt="">
+                    </div>
+                    <div class="tarjeta_volteo-back">
+                         blablabla
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <h1 class="subtitulo_index">Productos</h1>
+        <h1 class="subtitulo_index">Ultimos Productos</h1>
         <div class="contenedor_visualizar">
 
             {% for i in forms %}
@@ -81,7 +118,6 @@
                   {% endif %}
                 </div>
               </div>
-
               {% endfor %}
               
         </div>

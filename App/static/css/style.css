@@ -9,9 +9,8 @@
     /* Altura */
     height: 70px;
     /* Color de Fondo */
-    background: #EEEEEE;
+    background: #ebd5c7;
     display: flex;
-    /* Propiedad del Display Flex para acomodar los Elementos */
     justify-content: space-between;
 }
 
@@ -22,9 +21,7 @@
 }
 
 .menu_selectivo {
-    /* Interlineado */
     line-height: 65px;
-    /* Margen Derecho */
     margin-right: 10px;
 }
 
@@ -34,31 +31,22 @@
     /* Redondear las Esquinas */
     border-radius: 10px;
     margin-right: 10px;
-    /* Quitamos la linea Inferior a la etiqueta a */
     text-decoration: none;
-    /* Cambiamos el Tamaño de Letra */
     font-size: 16px;
-    /* Cambio de Color del Texto */
-    color: #343434;
+    color: #925446; /* Color de texto */
 }
 
 .menu_selectivo a:hover {
-    /* Relleno */
     padding: 10px;
-    /* Redondear las Esquinas */
     border-radius: 10px;
-    /* Color de Fondo */
-    background: #395090;
+    background: #d08d80; /* Color de fondo al pasar el mouse */
     color: #FCFCFC;
 }
 
 #contacto_btn {
-    /* Relleno */
     padding: 10px;
-    /* Redondear las Esquinas */
     border-radius: 10px;
-    /* Color de Fondo */
-    background: #395090;
+    background: #d08d80; /* Color de fondo del botón */
     color: #FCFCFC;
 }
 
@@ -67,22 +55,21 @@
 }
 
 .intermedio img {
-    height: 75vh;
-    width: 100%;
+    height: 75vh; 
+    width: 100%; 
+    object-fit: cover;
 }
 
-
-.principal_intermedio{
-    filter: contrast(120%);
+.principal_intermedio {
+    filter: contrast(120%); 
+    height: auto; 
 }
 
 
 .contenedor_index {
     display: flex;
     justify-content: space-between;
-    /* Ancho */
     width: 1200px;
-    /* Alto */
     height: 650px;
     margin: 0 auto;
     border-radius: 15px;
@@ -101,7 +88,7 @@
 }
 
 .artitulo h2 {
-    color: #395090;
+    color: #747b69; /* Color del título */
     font-size: 25px;
     text-align: center;
 }
@@ -111,12 +98,10 @@
     color: #343434;
 }
 
-
-
 footer {
     margin-top: 5px;
     height: 80px;
-    background-color: #EEEEEE;
+    background-color: #ebd5c7; /* Color de fondo del footer */
     display: flex;
     justify-content: center;
 }
@@ -127,7 +112,6 @@ footer img {
     height: 50px;
     margin-right: 5px;
 }
-
 
 /* ---- Tarjetas Index ---- */
 .tarjetas_index {
@@ -140,17 +124,18 @@ footer img {
 
 /* FLIP CARD */
 .tarjeta_volteo {
+    margin-top: 10%;
     width: 250px;
-    height: 459PX;
+    height: 400px;
     perspective: 2000px;
 }
 
 .tarjeta_volteo-front img {
-    width: 250px;
-    height: 504px;
+   margin-top: 20%;
     border-radius: 20px;
+    max-width: 100%; 
+    max-height: 100%;
 }
-
 
 .tarjeta_volteo-interno {
     position: relative;
@@ -183,22 +168,21 @@ footer img {
     display: grid;
     place-items: center;
     padding: 5px;
-    background-color: #343434;
+    background-color: #d08d80; /* Color de fondo de la parte trasera de la tarjeta */
     transform: rotateY(180deg);
-    color: #EEEEEE;
+    color: #ffffff; /* Color del texto en la parte trasera */
 }
 
 .tarjeta_volteo:hover .tarjeta_volteo-interno {
     transform: rotateY(-180deg);
 }
 
-
 /* -----> Configuración del Sector Agregar <----- */
 .contendor_agregar {
     width: 1200px;
     height: 100%;
     border-radius: 20px;
-    background-color: #FCFCFC;
+    background-color: #fcfcfc;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -229,9 +213,9 @@ footer img {
     width: 62%;
 }
 
-.contendor_agregar form h1{
+.contendor_agregar form h1 {
     font-size: 35px;
-    color: #395090;
+    color: #747b69; /* Color del encabezado en el formulario */
     text-align: center;
     margin-bottom: 20px;
 }
@@ -259,39 +243,34 @@ footer img {
    width: 99%;
 }
 
-
-.respuesta{
-    color: #395090;
+.respuesta {
+    color: #747b69; /* Color de respuesta */
     font-size: 18px;
     font-style: italic;
 }
 
 /* -----> Configuración del Sector Visualizar <----- */
-
-.contenedor_visualizar{
+.contenedor_visualizar {
     display: flex;
     justify-content: center;
 }
 
-.card{
+.card {
     margin-left: 15px;  
 }
 
-.card-title{
+.card-title {
     font-size: 18px;
 }
 
-.contacto_btl{
-    /* Relleno */
+.contacto_btl {
     padding: 10px;
-    /* Redondear las Esquinas */
     border-radius: 10px;
-    /* Color de Fondo */
-    background: #275f39;
+    background: #747b69; /* Color de fondo del botón de contacto */
     color: #FCFCFC;
 }
 
-.subtitulo_index{
+.subtitulo_index {
     font-size: 45px;
     color: #395090;
     text-align: center;

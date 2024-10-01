@@ -20,14 +20,14 @@
                 <!-- Pasamos la Ruta de la Imagen Registrada -->
                 <img src="{{i.Imagen.url}}" class="card-img-top" alt="Imagen BD">
                 <div class="card-body">
-                  <h4 class="card-title">Nombre: {{i.Nombre}}</h4>
-                  <h5 class="card-title">Casa: {{i.Casa}}</h5>
-                  <p class="card-text">Hechizo: {{i.Hechizo}}</p>
+                  <h4 class="card-title">Nombre: {{i.nom_producto}}</h4>
+                  <h5 class="card-title">Precio: {{i.precio_producto}}</h5>
+                  <p class="card-text">stock: {{i.stock_producto}}</p>
                   {% if perms.App.change_personajes %}
-                  <a href="{% url 'modificar' i.Codigo %}" class="btn btn-warning">Editar</a>
+                  <a href="{% url 'modificar' i.id_producto %}" class="btn btn-warning">Editar</a>
                   {% endif %}
                   {% if perms.App.delete_personajes %}
-                  <a href="{% url 'eliminar' i.Codigo %}" class="btn btn-danger">Eliminar</a>
+                  <a href="{% url 'eliminar' i.id_producto %}" class="btn btn-danger">Eliminar</a>
                   {% endif %}
                 </div>
               </div>
