@@ -280,4 +280,54 @@ footer{
     background-color: #EEEEEE;
     height: fit-content;
 }
-/* -----> Configuración del Sector Modificar <----- */
+/* -----> Configuración del Sector Login <----- */
+
+.contendor_login > form {
+    flex: 1 1 45%; /* Flexibilidad en el tamaño */
+    margin: 10px; /* Margen entre los elementos */
+    min-width: 300px; /* Ancho mínimo para cada elemento */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para cada elemento */
+    border-radius: 10px; /* Bordes redondeados para los elementos */
+    padding: 15px; /* Espacio interno para los elementos */
+    background-color: #d08d80 ; /* Color de fondo para los elementos */
+}
+.contendor_login svg{
+    width: 38%;
+    object-fit: cover;
+}
+
+.contendor_login form{
+    padding: 40px;
+    width: 50%;
+    margin-left: 18%;
+}
+
+.contendor_login form h1 {
+    font-size: 35px; 
+    color: #ffffff; /* Color del encabezado en el formulario */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contendor_login form textarea{
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 3px;
+    margin: 8px 0;
+    resize: none;
+    /* border: 1px 1px #555555; */
+}
+.contendor_login form input{
+    width: 300px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 3px;
+    margin: 8px 0;
+    /* border: 1px 1px #555555; */
+}
+.btn{
+   margin-top: 15px;
+   width: 70%;
+}
