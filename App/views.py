@@ -84,9 +84,12 @@ def Comprar (request,id_producto):
                 return render (request,"index.html",{"data":"Carrito no encontrado"})
 def VerCarrito (request):
     #sql = Carrito_detalle.objects.select_related('carrito_det','producto').all().filter(carrito_det__user=request.user.username)
-    sql = Carrito_detalle.objects.filter(carrito_det__user=request.user.id)
+    try:
+        sql = Carrito_detalle.objects.filter(carrito_det__user=request.user.id)
 
-    data = {
-        'forms':sql
-    }
-    return render(request,"Pages/carrito.html",data)
+        data = {
+            'forms':sql
+        }
+        return render(request,"Pages/carrito.html",data)
+    except Carrito_detalle.DoesNotExist:
+        return render (request,"index.html",{"data":"Carrito no encontrado"})

@@ -3,7 +3,7 @@ from ckeditor import fields
 from django.contrib.auth.models import User
 # Create your models here.
 class Productos(models.Model):
-    id_producto = models.IntegerField(primary_key=True, null=False)
+    id_producto = models.AutoField(primary_key=True)
     nom_producto = models.TextField(max_length=50, null=False)
     desc_producto = fields.RichTextField(null=True)
     precio_producto = models.IntegerField(null=False)
@@ -14,14 +14,13 @@ class Productos(models.Model):
         return self.id_producto
 
 class Carrito(models.Model):
-    carrito_id = models.AutoField(primary_key=True)
+    carrito_id = models.AutoField(primary_key=True, null=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     def __int__(self):
         return self.carrito_id
     
 class Carrito_detalle(models.Model):
-    carrito_det = models.ForeignKey(Carrito, on_delete=models.CASCADE)
+    carrito_det = models.ForeignKey(Carrito, on_delete=models.CASCADE, null=False)
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
     def __str__(self):
