@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/style.css">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div class="contendor_login">
@@ -12,10 +12,14 @@
             <img src="static '../../../../static/img/logo.png" alt="Logo de la marca">
         </div>
         <form action="" method="post">
-            <h1>LOGIN</h1>
+            <h1>Login</h1>
             {% csrf_token %} 
-            {{form}}
-            <input class="btn_login"  type="submit" value="Login">
+            {{ form }}
+            
+            <!-- Enlace para registrarse -->
+            <p class="registro_enlace">¿No tienes una cuenta? <a href="{% url 'register' %}">Regístrate aquí</a></p>
+            
+            <input class="btn_login" type="submit" value="Login">
         </form>
     </div>
 </body>

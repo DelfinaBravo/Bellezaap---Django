@@ -27,7 +27,11 @@
                     class="btn btn-primary">
                     Comprar
                 </a>
-                
+                  {% else %}
+                  <a
+                    class="btn btn-danger">
+                    Sin Stock
+                </a>
                   {% endif %}
                   {% if perms.App.change_personajes %}
                   <a href="{% url 'modificar' i.id_producto %}" class="btn btn-warning">Editar</a>

@@ -1,11 +1,13 @@
-from django.shortcuts import render,get_object_or_404,redirect
-#---->Importamos el Sector de Formularios
-from .forms import *
-from .models import *
-#--->Importamos la Libreria de Logout
+from operator import index
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout
-#--->Importamos la Libreria de Permisos
 from django.contrib.auth.decorators import login_required, permission_required
+
+# Importaciones para la autenticación y registro
+from django.contrib.auth import login, authenticate
+from .forms import *  # Asegúrate de que estás importando tu formulario SignUpForm
+from .models import *
+
 
 # Create your views here.
 def Home(request):
@@ -103,3 +105,18 @@ def EliminarCarrito (request):
         return render(request,"Pages/carrito.html",data)
     except Carrito_detalle.DoesNotExist:
         return render (request,"index.html",{"data":"Carrito no encontrado"})
+    
+# Nueva vista para el registro de usuarios
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)  # Cambiar a SignUpForm
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect(to='inicio')  # Redirigir al home después de registrarse
+    else:
+        form = SignUpForm()  # Crear un nuevo formulario vacío
+    return render(request, 'registration/register.html', {'form': form})

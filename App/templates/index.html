@@ -33,13 +33,23 @@
 
         </nav>
     </header>
-    {% if data %}
-    Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: {{data}},
-        footer: '<a href="#">Why do I have this issue?</a>'
-      });
+    {% if err %}
+    <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "{{err}}",
+            });
+    </script>
+    {% endif %}
+    {% if accepted %}
+    <script>
+            Swal.fire({
+                icon: "success",
+                title: "Producto Añadido al Carrito",
+                text: "{{accepted}}",
+            });
+    </script>
     {% endif %}
     <section class="intermedio">
         {% block intermedio %}
