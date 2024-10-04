@@ -282,52 +282,71 @@ footer{
 }
 /* -----> Configuración del Sector Login <----- */
 
+.contendor_login {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+}
+
 .contendor_login > form {
-    flex: 1 1 45%; /* Flexibilidad en el tamaño */
+    flex: 250%; /* Cambia el porcentaje a 50% */
     margin: 10px; /* Margen entre los elementos */
     min-width: 300px; /* Ancho mínimo para cada elemento */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para cada elemento */
-    border-radius: 10px; /* Bordes redondeados para los elementos */
-    padding: 15px; /* Espacio interno para los elementos */
-    background-color: #d08d80 ; /* Color de fondo para los elementos */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno para los elementos */
+    background-color: #d08d80; /* Color de fondo */
 }
-.contendor_login svg{
+
+.contendor_login svg {
     width: 38%;
     object-fit: cover;
 }
 
-.contendor_login form{
+.contendor_login form {
     padding: 40px;
-    width: 50%;
-    margin-left: 18%;
+    width: 100%; /* Ajustado a 100% para el formulario interno */
 }
 
 .contendor_login form h1 {
     font-size: 35px; 
-    color: #ffffff; /* Color del encabezado en el formulario */
+    color: #ffffff; /* Color del encabezado */
     text-align: center;
     margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif; 
 }
 
-.contendor_login form textarea{
-    width: 300px;
-    height: 50px;
+.contendor_login form textarea,
+.contendor_login form input {
+    width: calc(100% - 20px); /* Ajusta el ancho con el padding */
     border-radius: 10px;
     font-size: 20px;
-    padding: 3px;
+    padding: 10px; /* Aumenta el padding para más comodidad */
     margin: 8px 0;
-    resize: none;
-    /* border: 1px 1px #555555; */
+    border: 2px solid #020202; /* Borde elegante */
+    transition: border 0.3s; /* Transición suave al enfocar */
 }
-.contendor_login form input{
-    width: 300px;
-    border-radius: 10px;
-    font-size: 20px;
-    padding: 3px;
-    margin: 8px 0;
-    /* border: 1px 1px #555555; */
+
+.contendor_login form textarea:focus,
+.contendor_login form input:focus {
+    border-color: #ffcfc6; /* Color del borde al enfocar */
+    outline: none; /* Quita el borde de enfoque predeterminado */
 }
-.btn{
-   margin-top: 15px;
-   width: 70%;
+
+.btn_login {
+    margin-top: 15px;
+    width: 70%;
+    background-color: #ffffff; /* Color de fondo del botón */
+    color: #000000; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados para el botón */
+    padding: 10px; /* Espaciado interno */
+    font-size: 18px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+.btn_login:hover {
+    background-color: #f8b4a7; /* Cambio de color */
 }
