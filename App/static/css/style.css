@@ -239,8 +239,7 @@ footer img {
     border: 1px 1px #555555;
 }
 .btn{
-   margin-top: 15px;
-   width: 99%;
+   width: 48%;
 }
 
 .respuesta {
@@ -279,6 +278,11 @@ footer img {
 footer{
     background-color: #EEEEEE;
     height: fit-content;
+}
+
+.btn-primary{
+    width: 98%;
+    margin-bottom: 2%;
 }
 /* -----> Configuración del Sector Login <----- */
 
@@ -423,4 +427,15 @@ body {
 
 .btn_registro:hover {
     background-color: #ff6347; /* Cambio de color al pasar el ratón */
+}
+
+
+.btn-danger{
+    width: 98%;
+    margin-bottom: 2%;
+}
+
+.btn-warning{
+    width: 98%;
+    margin-bottom: 2%;
 }
