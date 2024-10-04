@@ -7,20 +7,18 @@
 
     <!-- Main -->
     {% block cuerpo %}
-        <div class="contenedor_visualizar">
-            <!-- 
-                i-- Variable para el conteo
-                forms -- Palabra enviada desde "Data" para Traer los Datos
-                for -- Ciclo por Conteo
-                Desde el Primer Elemento hasta el Ultimo elemento
-            -->
-            {% for i in forms %}
-            <div class="card" style="width: 18rem;">
-                <!-- Pasamos la Ruta de la Imagen Registrada -->
-                <img src="{{i.producto.imagen_producto.url}}" class="card-img-top" alt="Imagen BD">
-                <div class="card-body">
-                  <h4 class="card-title">Nombre: {{i.producto.nom_producto}}</h4>
-                  <h5 class="card-title">Precio: {{i.producto.precio_producto}}</h5>
-              {% endfor %}
+    <div class="row">
+        {% for i in forms %}
+        <div class="col-md-4">
+            <div class="card m-0" style="width: 18rem;">
+            <!-- Pasamos la Ruta de la Imagen Registrada -->
+            <img src="{{i.producto.imagen_producto.url}}" class="card-img-top" alt="Imagen BD">
+            <div class="card-body">
+              <h4 class="card-title">Nombre: {{i.producto.nom_producto}}</h4>
+              <h5 class="card-title">Precio: {{i.producto.precio_producto}}</h5>
+            </div>
+          </div>
         </div>
+        {% endfor %}
+      </div>
     {% endblock %}
