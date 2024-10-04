@@ -9,7 +9,9 @@
 <body>
     <div class="contendor_login">
         <form action="" method="post">
-            <img class="logo_login" src="static '../../../../static/img/logo.png" alt="Logo de la marca">
+           <div class="logo_login">
+            <img src="static '../../../../static/img/logo.png" alt="Logo de la marca">
+           </div>
             <h1>Login</h1>
             {% csrf_token %} 
             {{ form }}
