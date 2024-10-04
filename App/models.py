@@ -20,6 +20,7 @@ class Carrito(models.Model):
         return self.carrito_id
     
 class Carrito_detalle(models.Model):
+    pk_carritodet = models.AutoField(primary_key=True)
     carrito_det = models.ForeignKey(Carrito, on_delete=models.CASCADE, null=False)
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
