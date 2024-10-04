@@ -21,7 +21,12 @@
             <img src="{{ i.producto.imagen_producto.url }}" class="card-img-top" alt="Imagen BD">
             <div class="card-body">
                 <h4 class="card-title">Nombre: {{ i.producto.nom_producto }}</h4>
+                {% if i.precioreb_producto != i.precio_producto %}
                 <h5 class="card-title">Precio: {{ i.producto.precio_producto }}</h5>
+                  <h5 class="text-decoration-line-through">${{i.precioreb_producto}}</h5>
+                  {% else %}
+                <h5 class="card-title">Precio: {{ i.producto.precio_producto }}</h5>
+                  {% endif %}
             </div>
             <a
                 id=""
