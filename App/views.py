@@ -1,12 +1,14 @@
-from django.shortcuts import render,get_object_or_404,redirect
-#---->Importamos el Sector de Formularios
-from .forms import *
-from .models import *
-#--->Importamos la Libreria de Logout
+from operator import index
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout
-#--->Importamos la Libreria de Permisos
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib import messages
+
+# Importaciones para la autenticación y registro
+from django.contrib.auth import login, authenticate
+from .forms import SignUpForm  # Asegúrate de que estás importando tu formulario SignUpForm
+from .models import *
+
+
 # Create your views here.
 def Home(request):
     buscar=Productos.objects.all().order_by('-id_producto')[:3]
@@ -67,34 +69,21 @@ def salir(request):
     logout(request)
     return redirect(to='inicio')
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
-from .models import User, Carrito, Carrito_detalle, Productos
-
 @login_required
-def Comprar(request, id_producto):
+def Comprar (request,id_producto):
     try:
         usuario = User.objects.get_by_natural_key(request.user.username)
 
-        # Obtener o crear el carrito
-        carrito, created = Carrito.objects.get_or_create(carrito_id=request.user.id, user=usuario)
-
-        # Obtener el producto
-        producto = get_object_or_404(Productos, id_producto=id_producto)
-
-        # Crear el detalle del carrito
-        carritoDet = Carrito_detalle.objects.create(carrito_det=carrito, producto=producto, cantidad=1)
+        carrito = Carrito.objects.all().get_or_create(carrito_id=request.user.id,user=usuario)
+        carritoDet = Carrito_detalle.objects.create(carrito_det=Carrito.objects.last(),producto=get_object_or_404(Productos,id_producto=id_producto),cantidad=1)
         carritoDet.save()
-
-        messages.success(request, "Operación realizada con éxito.")
-        return redirect(to="inicio")
-        
-    except Exception as e:
-        messages.error(request, f"Error al procesar la compra: {str(e)}")
-        print(e)
-        return redirect(to="inicio")
-
+        return render (request,"index.html",{"data":"Producto añadido"})    
+    except Carrito.DoesNotExist:
+            try:
+                NCarr = Carrito(user=usuario)
+                NCarr.save()
+            except NCarr.DoesNotExist:
+                return render (request,"index.html",{"data":"Carrito no encontrado"})
 def VerCarrito (request):
     #sql = Carrito_detalle.objects.select_related('carrito_det','producto').all().filter(carrito_det__user=request.user.username)
     try:
@@ -105,11 +94,29 @@ def VerCarrito (request):
         }
         return render(request,"Pages/carrito.html",data)
     except Carrito_detalle.DoesNotExist:
-        return render (request,"index.html",{"err":"Carrito no encontrado"})
-def EliminarCarrito (request,pk_carritodet):
+        return render (request,"index.html",{"data":"Carrito no encontrado"})
+def EliminarCarrito (request):
     try:
-        buscar=get_object_or_404(Carrito_detalle,pk_carritodet=pk_carritodet)
-        buscar.delete()
-        return redirect(to="carrito")
+        sql = Carrito_detalle.objects.filter(carrito_det__user=request.user.id)
+
+        data = {
+            'forms':sql
+        }
+        return render(request,"Pages/carrito.html",data)
     except Carrito_detalle.DoesNotExist:
-        return render (request,"index.html",{"err":"Este producto no puede ser eliminado: " + pk_carritodet})
+        return render (request,"index.html",{"data":"Carrito no encontrado"})
+    
+# Nueva vista para el registro de usuarios
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)  # Cambiar a SignUpForm
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect(to='inicio')  # Redirigir al home después de registrarse
+    else:
+        form = SignUpForm()  # Crear un nuevo formulario vacío
+    return render(request, 'registration/register.html', {'form': form})

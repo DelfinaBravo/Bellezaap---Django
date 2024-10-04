@@ -13,4 +13,5 @@ urlpatterns = [
     path('modificar/<id_producto>/',Modificar_Productos,name='modificar'),
     path('eliminar/<id_producto>/',Eliminar_Productos,name='eliminar'),
     path('logouts/',salir,name='logouts'),
+    path('register/', register, name='register'),
 ]
