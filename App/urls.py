@@ -8,6 +8,7 @@ urlpatterns = [
     path('agregar/',Agregar,name='agregar'),
     path('comprar/<id_producto>/',Comprar,name='comprar'),
     path('carrito/',VerCarrito ,name='carrito'),
+    path('carrito/eliminar/<pk_carritodet>/',EliminarCarrito ,name='carritoE'),
     path('visualizar/',ver_Productos,name='visualizar'),
     path('modificar/<id_producto>/',Modificar_Productos,name='modificar'),
     path('eliminar/<id_producto>/',Eliminar_Productos,name='eliminar'),

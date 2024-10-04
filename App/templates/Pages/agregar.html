@@ -31,7 +31,7 @@
                     {{forms}}
                     {% csrf_token %} 
                     <input type="submit" value="Registrar" class="btn btn-success">
-                    <a href=""><input type="submit" value="Ver Producto" class="btn btn-secondary"></a>
+                    <a href="{% url 'visualizar' %}" class="btn btn-secondary">Ver Producto</a>
                     <p class="maldonado">{{mensaje}}</p>
                 </form>
         </div>
