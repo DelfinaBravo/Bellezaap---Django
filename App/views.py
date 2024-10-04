@@ -93,3 +93,13 @@ def VerCarrito (request):
         return render(request,"Pages/carrito.html",data)
     except Carrito_detalle.DoesNotExist:
         return render (request,"index.html",{"data":"Carrito no encontrado"})
+def EliminarCarrito (request):
+    try:
+        sql = Carrito_detalle.objects.filter(carrito_det__user=request.user.id)
+
+        data = {
+            'forms':sql
+        }
+        return render(request,"Pages/carrito.html",data)
+    except Carrito_detalle.DoesNotExist:
+        return render (request,"index.html",{"data":"Carrito no encontrado"})
