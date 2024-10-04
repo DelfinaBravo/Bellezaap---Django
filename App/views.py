@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 # Importaciones para la autenticación y registro
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm  # Asegúrate de que estás importando tu formulario SignUpForm
+from .forms import *  # Asegúrate de que estás importando tu formulario SignUpForm
 from .models import *
 
 
