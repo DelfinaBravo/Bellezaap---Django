@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+    {% load static %}
+
+    {% block intermedio %}
+    {% endblock %}
+
+    <!-- Main -->
+    {% block cuerpo %}
+    <div class="alert alert-info">
+        <h3>Pago en revisión</h3>
+        <p>Estamos procesando tu pago, recibirás una confirmación pronto.</p>
+        <a href="{% url 'inicio' %}" class="btn btn-primary">Volver al Inicio</a>
+    </div>        
+    {% endblock %}

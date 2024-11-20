@@ -1,55 +1,79 @@
 {% extends 'index.html' %}
 
     {% load static %}
-
+    {% load custom_filters %}
     {% block intermedio %}
     {% endblock %}
 
     <!-- Main -->
     {% block cuerpo %}
-        <div class="contenedor_visualizar">
-            <!-- 
-                i-- Variable para el conteo
-                forms -- Palabra enviada desde "Data" para Traer los Datos
-                for -- Ciclo por Conteo
-                Desde el Primer Elemento hasta el Ultimo elemento
-            -->
-            {% if forms|length >= 1 %}
-    {% for i in forms %}
-        <div class="card" style="width: 18rem;">
-            <!-- Pasamos la Ruta de la Imagen Registrada -->
-            <img src="{{ i.producto.imagen_producto.url }}" class="card-img-top" alt="Imagen BD">
-            <div class="card-body">
-                <h4 class="card-title">Nombre: {{ i.producto.nom_producto }}</h4>
-                {% if i.precioreb_producto != i.precio_producto %}
-                <h5 class="card-title">Precio: {{ i.producto.precio_producto }}</h5>
-                  <h5 class="text-decoration-line-through">${{i.precioreb_producto}}</h5>
-                  {% else %}
-                <h5 class="card-title">Precio: {{ i.producto.precio_producto }}</h5>
-                  {% endif %}
+    <div class="contenedor_visualizar">
+        <!-- Verificar si hay productos en el carrito -->
+        {% if forms|length >= 1 %}
+            {% for i in forms %}
+                <div class="card m-3" style="width: 18rem;">
+                    <!-- Imagen del producto -->
+                    <img src="{{ i.producto.imagen_producto.url }}" class="card-img-top" alt="{{ i.producto.nom_producto }}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ i.producto.nom_producto }}</h4>
+                        
+                        <!-- Mostrar precios con o sin rebaja -->
+                        {% if i.producto.precioreb_producto %}
+                            <h5 class="card-title">
+                                Precio: <span class="text-danger text-decoration-line-through">${{ i.producto.precio_producto }}</span>
+                                <span class="text-success">${{ i.producto.precioreb_producto }}</span>
+                            </h5>
+                        {% else %}
+                            <h5 class="card-title">Precio: ${{ i.producto.precio_producto }}</h5>
+                        {% endif %}
+                        
+                        <h6 class="card-subtitle mb-2 text-muted">Cantidad: {{ i.cantidad }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Subtotal: ${{ i.cantidad|multiply:i.producto.precio_producto }}</h6>
+                        
+                        <!-- Botón para eliminar producto -->
+                        <a
+                            class="btn btn-danger"
+                            href="{% url 'eliminar_carrito' i.pk_carritodet %}"
+                            role="button"
+                        >
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <!-- Botón para vaciar todo el carrito -->
+            <div class="mt-4 text-center" style="border-radius: 10px; background-color: #ebd5c7; width: 20%; display: flex; margin: auto; justify-content: center; ">
+                <a
+                    href="{% url 'eliminar_carrito' %}"
+                    class="btn"
+                    role="button"
+                >
+                    Vaciar Carrito
+                </a>
             </div>
-            <a
-                id=""
-                class="btn btn-danger"
-                href="{% url 'carritoE' i.pk_carritodet %}"
-                role="button"
-            >Eliminar</a>
-        </div>
-    {% endfor %}
-{% else %}
-    <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="Imagen BD">
-        <div class="card-body">
-            <h5 class="card-title">No tienes productos añadidos al carrito!</h5>
-            <h5 class="card-title">Dirígete a la zona de productos para poder comenzar a comprar.</h5>
-        </div>
-        <a
-            id=""
-            class="btn btn-danger"
-            href="{% url 'visualizar' %}"
-            role="button"
-        >Ver Productos</a>
-    </div>
-{% endif %}
-
+            <div class="text-center mt-4">
+                <a href="{% url 'procesar_pago' %}" class="btn btn-lg" style="background-color: #5c4033; color: #ffffff;">
+                    <i class="bi bi-credit-card"></i> Pagar con Mercado Pago
+                </a>
+            </div>
+            
+        {% else %}
+            <!-- Mensaje si no hay productos en el carrito -->
+            <div class="card" style="width: 18rem; margin: auto;">
+                <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="No hay productos">
+                <div class="card-body">
+                    <h5 class="card-title">¡Tu carrito está vacío!</h5>
+                    <p class="card-text">Agrega productos desde la tienda para empezar a comprar.</p>
+                    <a
+                        class="btn btn-primary"
+                        href="{% url 'visualizar' %}"
+                        role="button"
+                    >
+                        Ver Productos
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>    
     {% endblock %}

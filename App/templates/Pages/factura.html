@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block intermedio %}
+<div class="py-4 text-center" style="background-color: #ebd5c7;">
+    <h2 style="color: #5c4033;">Mi Factura</h2>
+    <p style="color: #7a5b52;">Revisa tu compra y descarga la factura en formato PDF.</p>
+</div>
+{% endblock %}
+
+{% block cuerpo %}
+<div class="container mt-5">
+    <div class="card" style="border-color: #7a5b52;">
+        <div class="card-header" style="background-color: #ebd5c7; color: #5c4033;">
+            <h3>Detalles de Factura</h3>
+        </div>
+        <div class="card-body" style="background-color: #f4eae6; color: #7a5b52;">
+            <p class="lead">Gracias por tu compra, {{ user.username }}.</p>
+            <p>Puedes descargar tu factura haciendo clic en el botón de abajo:</p>
+            <div class="text-center mt-4">
+                <a href="{% url 'generar_boleta' %}" class="btn btn-lg" style="background-color: #5c4033; color: #ffffff; border-color: #7a5b52;">
+                    <i class="bi bi-file-earmark-arrow-down"></i> Descargar Factura
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

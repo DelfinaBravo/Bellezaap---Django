@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+    {% load static %}
+
+    {% block intermedio %}
+    {% endblock %}
+
+    <!-- Main -->
+    {% block cuerpo %}
+    <div class="alert alert-success">
+        <h3>¡Pago realizado con éxito!</h3>
+        <p>Gracias por tu compra.</p>
+        <a href="{% url 'inicio' %}" class="btn btn-primary">Volver al Inicio</a>
+    </div>    
+    {% endblock %}
