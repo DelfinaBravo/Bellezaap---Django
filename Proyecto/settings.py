@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App',
-    'ckeditor',
+    'django_ckeditor_5',
+   
 ]
 
 MIDDLEWARE = [
@@ -140,4 +141,16 @@ USE_TZ = True
 # Mercado Pago Credentials
 MERCADOPAGO_PUBLIC_KEY = 'TEST-e0cbfabf-2add-48d4-9943-961f99cdb7eb'
 MERCADOPAGO_ACCESS_TOKEN = 'TEST-7977171806916069-112002-ce3754249af444c762cc71a566b94f2f-1302159616'
+
+#settings.py
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bravodelfina05@gmail.com'  # Tu correo
+EMAIL_HOST_PASSWORD = 'VFCB YVBS POBG PVTP'  # Tu contraseña
+
+
+
 

@@ -15,10 +15,9 @@
             <h1>Login</h1>
             {% csrf_token %} 
             {{ form }}
-            
             <!-- Enlace para registrarse -->
             <p class="registro_enlace">¿No tienes una cuenta? <a href="{% url 'register' %}">Regístrate aquí</a></p>
-            
+            <a href="{% url 'password_reset' %}">Olvidé mi contraseña</a>
             <input class="btn_login" type="submit" value="Login">
         </form>
     </div>

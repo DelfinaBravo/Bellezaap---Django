@@ -1,6 +1,7 @@
 from django.urls import path
 #-->Importamos las Vistas para las URL
 from .views import *
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #-->URL, FUNCION, NOMBRE PARA HTML
@@ -21,5 +22,9 @@ urlpatterns = [
     path('pago-exitoso/', pago_exitoso, name='pago_exitoso'),
     path('pago-fallido/', pago_fallido, name='pago_fallido'),
     path('pago-pendiente/', pago_pendiente, name='pago_pendiente'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     
 ]

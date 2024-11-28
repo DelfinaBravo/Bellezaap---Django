@@ -251,13 +251,13 @@ def Comprar (request,id_producto):
         carrito = Carrito.objects.all().get_or_create(carrito_id=request.user.id,user=usuario)
         carritoDet = Carrito_detalle.objects.create(carrito_det=Carrito.objects.last(),producto=get_object_or_404(Productos,id_producto=id_producto),cantidad=1)
         carritoDet.save()
-        return render (request,"index.html",{"data":"Producto añadido"})    
+        return render (request,"Pages/visualizar.html",{"data":"Producto añadido"})    
     except Carrito.DoesNotExist:
             try:
                 NCarr = Carrito(user=usuario)
                 NCarr.save()
             except NCarr.DoesNotExist:
-                return render (request,"index.html",{"data":"Carrito no encontrado"})
+                return render (request,"Pages/visualizar.html",{"data":"Carrito no encontrado"})
             
 def VerCarrito (request):
     #sql = Carrito_detalle.objects.select_related('carrito_det','producto').all().filter(carrito_det__user=request.user.username)
