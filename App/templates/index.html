@@ -18,22 +18,22 @@
 <body>
     <header class="encabezado">
        <a href="{% url 'inicio' %}"><img src="{% static 'img/maquillajes/logoMaquillaje.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
-        <nav class="menu_selectivo">
-            {% if user.is_superuser %}
-            <a href="{% url 'agregar' %}">Agregar</a>
-            {% endif %}
-            <!-- Nombre de URL-- visualizar -->
-            <a href="{% url 'visualizar' %}">Productos</a>
-            <a href="{% url 'generar_boleta' %}">Factura</a>
-            {% if user.is_authenticated %}
-            {% csrf_token %}
-            <a href="{% url 'logouts' %}" id="contacto_btn">Salir</a>
-            <a href="{% url 'carrito' %}" id="contacto_btn">Carrito</a>
-            {% else %}
-            <a href="{% url 'login' %}" id="contacto_btn">Acceder</a>
-            {% endif %}
+       <nav class="menu_selectivo">
+        {% if user.is_superuser %}
+        <a href="{% url 'agregar' %}">Agregar</a>
+        {% endif %}
+        <!-- Nombre de URL-- visualizar -->
+        <a href="{% url 'visualizar' %}">Productos</a>
+        <a href="{% url 'generar_boleta' %}">Factura</a>
+        {% if user.is_authenticated %}
+        {% csrf_token %}
+        <a href="{% url 'logouts' %}" id="contacto_btn">Salir</a>
+        <a href="{% url 'carrito' %}" id="contacto_btn">Carrito</a>
+        {% else %}
+        <a href="{% url 'login' %}" id="contacto_btn">Acceder</a>
+        {% endif %}
 <!-- prueba repositorio -->
-        </nav>
+    </nav>
     </header>
     {% if err %}
     <script>
