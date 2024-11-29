@@ -12,55 +12,55 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from django.contrib import messages
 from django.template.loader import render_to_string
-from weasyprint import HTML
+# from weasyprint import HTML
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
-import mercadopago
+# import mercadopago
 from django.conf import settings
 from django.http import JsonResponse
 
 
-@login_required
-def procesar_pago(request):
-    try:
-        # Crear el cliente de Mercado Pago
-        sdk = mercadopago.SDK(settings.MERCADOPAGO_ACCESS_TOKEN)
+# @login_required
+# def procesar_pago(request):
+#     try:
+#         # Crear el cliente de Mercado Pago
+#         # sdk = mercadopago.SDK(settings.MERCADOPAGO_ACCESS_TOKEN)
 
-        # Obtener el carrito del usuario
-        carrito = Carrito.objects.get(user=request.user)
+#         # Obtener el carrito del usuario
+#         carrito = Carrito.objects.get(user=request.user)
 
-        # Preparar los ítems para Mercado Pago
-        items = []
-        for detalle in carrito.carrito_detalle_set.all():
-            items.append({
-                "title": detalle.producto.nom_producto,
-                "quantity": detalle.cantidad,
-                "currency_id": "ARS",  # Cambia según la moneda local
-                "unit_price": float(detalle.producto.precio_producto),
-            })
+#         # Preparar los ítems para Mercado Pago
+#         items = []
+#         for detalle in carrito.carrito_detalle_set.all():
+#             items.append({
+#                 "title": detalle.producto.nom_producto,
+#                 "quantity": detalle.cantidad,
+#                 "currency_id": "ARS",  # Cambia según la moneda local
+#                 "unit_price": float(detalle.producto.precio_producto),
+#             })
 
-        # Crear la preferencia de pago
-        preference_data = {
-            "items": items,
-            "payer": {
-                "email": request.user.email,
-            },
-            "back_urls": {
-                "success": request.build_absolute_uri('/pago-exitoso/'),
-                "failure": request.build_absolute_uri('/pago-fallido/'),
-                "pending": request.build_absolute_uri('/pago-pendiente/'),
-            },
-            "auto_return": "approved",
-        }
-        preference_response = sdk.preference().create(preference_data)
-        preference = preference_response["response"]
+#         # Crear la preferencia de pago
+#         preference_data = {
+#             "items": items,
+#             "payer": {
+#                 "email": request.user.email,
+#             },
+#             "back_urls": {
+#                 "success": request.build_absolute_uri('/pago-exitoso/'),
+#                 "failure": request.build_absolute_uri('/pago-fallido/'),
+#                 "pending": request.build_absolute_uri('/pago-pendiente/'),
+#             },
+#             "auto_return": "approved",
+#         }
+#         # preference_response = sdk.preference().create(preference_data)
+#         preference = preference_response["response"]
 
-        # Redirigir al usuario a Mercado Pago
-        return redirect(preference["init_point"])
+#         # Redirigir al usuario a Mercado Pago
+#         return redirect(preference["init_point"])
 
-    except Carrito.DoesNotExist:
-        messages.error(request, "No se encontró un carrito para el usuario.")
-        return redirect('inicio')
+#     except Carrito.DoesNotExist:
+#         messages.error(request, "No se encontró un carrito para el usuario.")
+#         return redirect('inicio')
 
 def pago_exitoso(request):
     return render(request, "pago_exitoso.html")
