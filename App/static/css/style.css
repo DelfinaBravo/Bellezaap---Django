@@ -107,11 +107,12 @@
 footer {
     margin-top: 5px;
     height: 80px;
-    background-color: #ffbe98; /* Color de fondo del footer */
     display: flex;
     justify-content: center;
 }
-
+.fff{
+    background-color: #ebd5c7;
+}
 footer img {
     margin-top: 20px;
     width: 50px;
