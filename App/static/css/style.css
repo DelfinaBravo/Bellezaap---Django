@@ -103,10 +103,11 @@
     color: #343434;
 }
 
+/* sector footer */
 footer {
     margin-top: 5px;
     height: 80px;
-    background-color: #ebd5c7; /* Color de fondo del footer */
+    background-color: #ffbe98; /* Color de fondo del footer */
     display: flex;
     justify-content: center;
 }
