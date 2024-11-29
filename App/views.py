@@ -16,6 +16,10 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
 from django.conf import settings
 from django.http import JsonResponse
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
+from django.conf import settings
+from django.http import JsonResponse
 
 def pago_exitoso(request):
     return render(request, "pago_exitoso.html")
@@ -45,7 +49,7 @@ def generar_boleta(request):
         response['Content-Disposition'] = 'inline; filename="Bellezaapp.pdf"'
 
         pdf = canvas.Canvas(response)
-        pdf.drawString(100, 800, "Factura de Compra")
+        pdf.drawString(100, 800, "Fac.tura de Compra")
         pdf.drawString(100, 780, f"Cliente: {request.user.username}")
         pdf.drawString(100, 760, f"Fecha: {context['current_date'].strftime('%d %b %Y')}")  # Mostrar la fecha
         y = 630
