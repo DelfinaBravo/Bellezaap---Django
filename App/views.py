@@ -12,55 +12,10 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from django.contrib import messages
 from django.template.loader import render_to_string
-from weasyprint import HTML
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
-import mercadopago
 from django.conf import settings
 from django.http import JsonResponse
-
-
-@login_required
-def procesar_pago(request):
-    try:
-        # Crear el cliente de Mercado Pago
-        sdk = mercadopago.SDK(settings.MERCADOPAGO_ACCESS_TOKEN)
-
-        # Obtener el carrito del usuario
-        carrito = Carrito.objects.get(user=request.user)
-
-        # Preparar los ítems para Mercado Pago
-        items = []
-        for detalle in carrito.carrito_detalle_set.all():
-            items.append({
-                "title": detalle.producto.nom_producto,
-                "quantity": detalle.cantidad,
-                "currency_id": "ARS",  # Cambia según la moneda local
-                "unit_price": float(detalle.producto.precio_producto),
-            })
-
-        # Crear la preferencia de pago
-        preference_data = {
-            "items": items,
-            "payer": {
-                "email": request.user.email,
-            },
-            "back_urls": {
-                "success": request.build_absolute_uri('/pago-exitoso/'),
-                "failure": request.build_absolute_uri('/pago-fallido/'),
-                "pending": request.build_absolute_uri('/pago-pendiente/'),
-            },
-            "auto_return": "approved",
-        }
-        preference_response = sdk.preference().create(preference_data)
-        preference = preference_response["response"]
-
-        # Redirigir al usuario a Mercado Pago
-        return redirect(preference["init_point"])
-
-    except Carrito.DoesNotExist:
-        messages.error(request, "No se encontró un carrito para el usuario.")
-        return redirect('inicio')
 
 def pago_exitoso(request):
     return render(request, "pago_exitoso.html")
@@ -210,6 +165,7 @@ def Agregar(request):
         query=NuevoProducto(data=request.POST,files=request.FILES)
         if  query.is_valid():
             query.save()
+            messages.success(request, "Producto agregado corectamente!")
             data['mensaje']="Datos Registrados"
         else:
             data['forms']=NuevoProducto
@@ -227,6 +183,7 @@ def Modificar_Productos(request,id_producto):
         if  query.is_valid():
             query.save()
             data['mensaje']="Datos Modificados Correctamente "
+            messages.success(request, "Producto modificado con éxito.")
         else:
             data['forms']=NuevoProducto
     return render (request,'Pages/modificar.html', data)
@@ -236,6 +193,7 @@ def Modificar_Productos(request,id_producto):
 def Eliminar_Productos(request,id_producto):
     buscar=get_object_or_404(Productos,id_producto=id_producto)
     buscar.delete()
+    messages.success(request, "Producto eliminado con éxito.")
     return redirect(to="visualizar")
 
 
@@ -251,12 +209,14 @@ def Comprar (request,id_producto):
         carrito = Carrito.objects.all().get_or_create(carrito_id=request.user.id,user=usuario)
         carritoDet = Carrito_detalle.objects.create(carrito_det=Carrito.objects.last(),producto=get_object_or_404(Productos,id_producto=id_producto),cantidad=1)
         carritoDet.save()
+        messages.success(request, "Producto agregado al carrito correctamente. Gracias por elegirnos!")
         return render (request,"Pages/visualizar.html",{"data":"Producto añadido"})    
     except Carrito.DoesNotExist:
             try:
                 NCarr = Carrito(user=usuario)
                 NCarr.save()
             except NCarr.DoesNotExist:
+                messages.warning(request, "Ops!. No se pudo procesar la seleccion del producto")
                 return render (request,"Pages/visualizar.html",{"data":"Carrito no encontrado"})
             
 def VerCarrito (request):

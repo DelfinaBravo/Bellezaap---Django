@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
+
+# Opcional: Personaliza los niveles de los mensajes
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'App',
     'django_ckeditor_5',
+    'ckeditor',
    
 ]
 
@@ -101,6 +112,25 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "toolbar": [
+            "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", 
+            "blockQuote", "imageUpload", "insertTable", "mediaEmbed", "undo", "redo"
+        ],
+        "height": 300,
+        "width": 600,
+    },
+    "custom": {
+        "toolbar": [
+            "heading", "|", "bold", "italic", "underline", "|", "imageUpload", "link", 
+            "bulletedList", "numberedList", "|", "undo", "redo"
+        ],
+        "height": 400,
+        "width": "100%",
+    },
+}
 
 
 # Internationalization
