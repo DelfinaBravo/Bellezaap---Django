@@ -4,16 +4,6 @@
     {% endblock %}
     <!-- Main -->
     {% block cuerpo %}
-                  {% if messages %}
-                    <div class="messages">
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                  {% endif %}
         <div class="contenedor_visualizar">
             <!-- 
                 i-- Variable para el conteo
@@ -21,8 +11,14 @@
                 for -- Ciclo por Conteo
                 Desde el Primer Elemento hasta el Ultimo elemento
             -->
-           
-
+            <div class="messages">
+              {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              {% endfor %}
+            </div>
             {% for i in forms %}
             <div class="card" style="width: 18rem;">
                 <!-- Pasamos la Ruta de la Imagen Registrada -->
@@ -31,20 +27,15 @@
                   <h4 class="card-title">Nombre: {{i.nom_producto}}</h4>
                   <h5 class="card-title">Precio: {{i.precio_producto}}</h5>
                   {% if i.stock_producto > 1 %}
-                  <a
-                  href="{% url 'comprar' i.id_producto %}"
-                    class="btn btn-primary">
-                    Comprar
-                </a>
+                  <a href="{% url 'comprar' i.id_producto %}" class="btn btn-primary">Comprar</a>
                   {% else %}
-                  <a
-                    class="btn btn-danger">
-                    Sin Stock
-                </a>
+                  <a class="btn btn-danger">Sin Stock</a>
                   {% endif %}
+
                   {% if perms.App.change_personajes %}
                   <a href="{% url 'modificar' i.id_producto %}" class="btn btn-warning">Editar</a>
                   {% endif %}
+
                   {% if perms.App.delete_personajes %}
                   <a href="{% url 'eliminar' i.id_producto %}" class="btn btn-danger">Eliminar</a>
                   {% endif %}
