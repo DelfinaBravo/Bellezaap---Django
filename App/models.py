@@ -24,6 +24,8 @@ class Carrito_detalle(models.Model):
     carrito_det = models.ForeignKey(Carrito, on_delete=models.CASCADE, null=False)
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
+    class Meta:
+        unique_together = ('carrito_det', 'producto') 
     def __str__(self):
         return self.carrito_det
     

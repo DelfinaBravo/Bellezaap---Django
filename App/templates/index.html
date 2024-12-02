@@ -19,8 +19,8 @@
 
 <body>
     <header class="encabezado">
-       <a href="{% url 'inicio' %}"><img src="{% static 'img/maquillajes/logoMaquillaje.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
-       <nav class="menu_selectivo">
+    <a href="{% url 'inicio' %}"><img src="{% static 'img/maquillajes/logoMaquillaje.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
+    <nav class="menu_selectivo">
         {% if user.is_superuser %}
         <a href="{% url 'agregar' %}">Agregar</a>
         {% endif %}

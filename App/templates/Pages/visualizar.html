@@ -24,23 +24,23 @@
                 <!-- Pasamos la Ruta de la Imagen Registrada -->
                 <img src="{{i.imagen_producto.url}}" class="card-img-top" style="max-height: 300px; object-fit: contain;" alt="Imagen BD">
                 <div class="card-body">
-                  <h4 class="card-title">Nombre: {{i.nom_producto}}</h4>
-                  <h5 class="card-title">Precio: {{i.precio_producto}}</h5>
-                  {% if i.stock_producto > 1 %}
-                  <a href="{% url 'comprar' i.id_producto %}" class="btn btn-primary">Comprar</a>
-                  {% else %}
-                  <a class="btn btn-danger">Sin Stock</a>
-                  {% endif %}
+                <h4 class="card-title">Nombre: {{i.nom_producto}}</h4>
+                <h5 class="card-title">Precio: {{i.precio_producto}}</h5>
+                {% if i.stock_producto > 1 %}
+                <a href="{% url 'comprar' i.id_producto %}" class="btn btn-primary">Comprar</a>
+                {% else %}
+                <a class="btn btn-danger">Sin Stock</a>
+                {% endif %}
 
-                  {% if perms.App.change_personajes %}
-                  <a href="{% url 'modificar' i.id_producto %}" class="btn btn-warning">Editar</a>
-                  {% endif %}
+                {% if perms.App.change_personajes %}
+                <a href="{% url 'modificar' i.id_producto %}" class="btn btn-warning">Editar</a>
+                {% endif %}
 
-                  {% if perms.App.delete_personajes %}
-                  <a href="{% url 'eliminar' i.id_producto %}" class="btn btn-danger">Eliminar</a>
-                  {% endif %}
+                {% if perms.App.delete_personajes %}
+                <a href="{% url 'eliminar' i.id_producto %}" class="btn btn-danger">Eliminar</a>
+                {% endif %}
                 </div>
-              </div>
-              {% endfor %}
+            </div>
+            {% endfor %}
         </div>
     {% endblock %}

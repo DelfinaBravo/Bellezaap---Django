@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'App',
     'django_ckeditor_5',
-    'ckeditor',
-   
+    'ckeditor', 
 ]
 
 MIDDLEWARE = [
@@ -180,6 +179,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bravodelfina05@gmail.com'  # Tu correo
 EMAIL_HOST_PASSWORD = 'VFCB YVBS POBG PVTP'  # Tu contraseña
+
 
 
 
