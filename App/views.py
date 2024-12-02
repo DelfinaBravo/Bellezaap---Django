@@ -21,17 +21,6 @@ from reportlab.lib import colors
 from django.conf import settings
 from django.http import JsonResponse
 
-def continuarCompra(request):
-    return render(request, "Pages/visualizar.html")
-
-def pago_exitoso(request):
-    return render(request, "pago_exitoso.html")
-
-def pago_fallido(request):
-    return render(request, "pago_fallido.html")
-
-def pago_pendiente(request):
-    return render(request, "pago_pendiente.html")
 
 @login_required
 def generar_boleta(request):
@@ -52,7 +41,7 @@ def generar_boleta(request):
         response['Content-Disposition'] = 'inline; filename="Bellezaapp.pdf"'
 
         pdf = canvas.Canvas(response)
-        pdf.drawString(100, 800, "Fac.tura de Compra")
+        pdf.drawString(100, 800, "Factura de Compra")
         pdf.drawString(100, 780, f"Cliente: {request.user.username}")
         pdf.drawString(100, 760, f"Fecha: {context['current_date'].strftime('%d %b %Y')}")  # Mostrar la fecha
         y = 630
@@ -100,46 +89,6 @@ def generar_boleta(request):
     except Carrito.DoesNotExist:
         messages.error(request, "No se encontró un carrito para el usuario.")
         return redirect('inicio')
-
-
-# @login_required
-# def generar_boleta(request):
-#     try:
-#         # Obtener el carrito del usuario autenticado
-#         carrito = Carrito.objects.get(user=request.user)
-
-#         # Verificar si el carrito tiene productos
-#         if not carrito.carrito_detalle_set.exists():  # Utiliza el nombre relacionado por defecto (carritodetalle_set)
-#             messages.error(request, "El carrito está vacío. Agregue productos antes de generar una boleta.")
-#             return redirect('carrito')
-
-#         # Generar el PDF de la boleta
-#         response = HttpResponse(content_type='application/pdf')
-#         response['Content-Disposition'] = 'inline; filename="boleta.pdf"'
-
-#         p = canvas.Canvas(response)
-#         p.drawString(100, 800, "Boleta de Compra")
-#         p.drawString(100, 780, f"Cliente: {request.user.username}")
-#         y = 760
-
-#         total = 0
-#         for detalle in carrito.carrito_detalle_set.all():  # Itera sobre los detalles del carrito
-#             producto = detalle.producto
-#             cantidad = detalle.cantidad
-#             subtotal = producto.precio_producto * cantidad
-#             p.drawString(100, y, f"{producto.nom_producto} - {cantidad} x ${producto.precio_producto} = ${subtotal}")
-#             y -= 20
-#             total += subtotal
-
-#         p.drawString(100, y - 20, f"Total: ${total}")
-#         p.showPage()
-#         p.save()
-
-#         return response
-
-#     except Carrito.DoesNotExist:
-#         messages.error(request, "No se encontró un carrito para el usuario.")
-#         return redirect('inicio')
 
 @login_required
 def Factura(request):
@@ -208,25 +157,47 @@ def salir(request):
     logout(request)
     return redirect(to='inicio')
 
-@login_required
-def Comprar (request,id_producto):
-    try:
-        usuario = User.objects.get_by_natural_key(request.user.username)
 
-        carrito = Carrito.objects.all().get_or_create(carrito_id=request.user.id,user=usuario)
-        carritoDet = Carrito_detalle.objects.create(carrito_det=Carrito.objects.last(),producto=get_object_or_404(Productos,id_producto=id_producto),cantidad=1)
-        carritoDet.save()
-        messages.success(request, "Producto agregado al carrito correctamente. Gracias por elegirnos!")
-        # return render (request,"Pages/continuarCompra.html",{"data":"Producto añadido"})    
-        return redirect(to="ver_Productos")
-    except Carrito.DoesNotExist:
-            try:
-                NCarr = Carrito(user=usuario)
-                NCarr.save()
-            except NCarr.DoesNotExist:
-                messages.warning(request, "Ops!. No se pudo procesar la seleccion del producto")
-                return render (request,"Pages/continuarCompra.html",{"data":"Carrito no encontrado"})
-            
+@login_required
+def Comprar(request, id_producto):
+    usuario = request.user  # Ya autenticado por @login_required
+
+    # Obtener o crear el carrito para el usuario
+    carrito, created = Carrito.objects.get_or_create(user=usuario)
+
+    # Obtener el producto
+    producto = get_object_or_404(Productos, id_producto=id_producto)
+
+    # Buscar o crear el detalle del carrito
+    carrito_detalle = Carrito_detalle.objects.filter(
+    carrito_det=carrito,
+    producto=producto
+).first()
+
+    if not carrito_detalle:
+        carrito_detalle = Carrito_detalle.objects.create(
+            carrito_det=carrito,
+            producto=producto,
+            cantidad=0
+        )
+
+    # Manejar la acción (incrementar o disminuir)
+    accion = request.GET.get('accion')
+    if accion == "incrementar":
+        carrito_detalle.cantidad += 1
+    elif accion == "disminuir" and carrito_detalle.cantidad > 0:
+        carrito_detalle.cantidad -= 1
+
+    # Guardar o eliminar el detalle si corresponde
+    if carrito_detalle.cantidad == 0:
+        carrito_detalle.delete()
+    else:
+        carrito_detalle.save()
+
+    messages.success(request, "Carrito actualizado correctamente.")
+    return redirect("carrito")
+
+
 def VerCarrito (request):
     #sql = Carrito_detalle.objects.select_related('carrito_det','producto').all().filter(carrito_det__user=request.user.username)
     try:
@@ -257,18 +228,6 @@ def EliminarCarrito(request, pk=None):
         messages.error(request, f"Error al eliminar productos del carrito: {str(e)}")
         return redirect("carrito")
     
-# def EliminarCarrito (request):
-#     try:
-#         sql = Carrito_detalle.objects.filter(carrito_det__user=request.user.id)
-
-#         data = {
-#             'forms':sql
-#         }
-#         return render(request,"Pages/carrito.html",data)
-#     except Carrito_detalle.DoesNotExist:
-#         return render (request,"index.html",{"data":"Carrito no encontrado"})
-    
-# Nueva vista para el registro de usuarios
 def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)  # Cambiar a SignUpForm
