@@ -1,15 +1,16 @@
 {% extends 'index.html' %}
 
-    {% load static %}
-    {% load custom_filters %}
-    {% block intermedio %}
-    {% endblock %}
+{% load static %}
+{% load custom_filters %}
+{% block intermedio %}
+{% endblock %}
 
-    <!-- Main -->
-    {% block cuerpo %}
-    <div class="contenedor_visualizar">
-        <!-- Verificar si hay productos en el carrito -->
-        {% if forms|length >= 1 %}
+<!-- Main -->
+{% block cuerpo %}
+<div class="contenedor_visualizar">
+    <!-- Verificar si hay productos en el carrito -->
+    {% if forms|length >= 1 %}
+        <div class="d-flex flex-wrap justify-content-center"> <!-- Agregado: contenedor flex -->
             {% for i in forms %}
                 <div class="card m-3" style="width: 18rem;">
                     <!-- Imagen del producto -->
@@ -30,34 +31,28 @@
                         <h6 class="card-subtitle mb-2 text-muted">Cantidad: {{ i.cantidad }}</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Subtotal: ${{ i.cantidad|multiply:i.producto.precio_producto }}</h6>
                         
-                        
                         <!-- Botón para eliminar producto -->
                         <a class="btn btn-danger" href="{% url 'eliminar_carrito' i.pk_carritodet %}" role="button">Eliminar</a>
                     </div>
                 </div>
             {% endfor %}
-            
-            <!-- Botón para vaciar todo el carrito -->
-            <div class="mt-4 text-center" style="border-radius: 10px; background-color: #ebd5c7; width: 20%; display: flex; margin: auto; justify-content: center; ">
-                <a href="{% url 'eliminar_carrito' %}" class="btn" role="button"> Vaciar Carrito</a>
+        </div> <!-- Fin contenedor flex -->
+        
+        <!-- Botón para vaciar todo el carrito -->
+        <div class="mt-4 text-center" style="border-radius: 10px; background-color: #ebd5c7; width: 20%; display: flex; margin: auto; justify-content: center;">
+            <a href="{% url 'eliminar_carrito' %}" class="btn" role="button"> Vaciar Carrito</a>
+        </div>
+        
+    {% else %}
+        <!-- Mensaje si no hay productos en el carrito -->
+        <div class="card" style="width: 18rem; margin: auto;">
+            <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="No hay productos">
+            <div class="card-body">
+                <h5 class="card-title">¡Tu carrito está vacío!</h5>
+                <p class="card-text">Agrega productos desde la tienda para empezar a comprar.</p>
+                <a class="btn btn-primary" href="{% url 'visualizar' %}" role="button">Ver Productos</a>
             </div>
-            
-        {% else %}
-            <!-- Mensaje si no hay productos en el carrito -->
-            <div class="card" style="width: 18rem; margin: auto;">
-                <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="No hay productos">
-                <div class="card-body">
-                    <h5 class="card-title">¡Tu carrito está vacío!</h5>
-                    <p class="card-text">Agrega productos desde la tienda para empezar a comprar.</p>
-                    <a
-                        class="btn btn-primary"
-                        href="{% url 'visualizar' %}"
-                        role="button"
-                    >
-                        Ver Productos
-                    </a>
-                </div>
-            </div>
-        {% endif %}
-    </div>    
-    {% endblock %}
+        </div>
+    {% endif %}
+</div>    
+{% endblock %}
