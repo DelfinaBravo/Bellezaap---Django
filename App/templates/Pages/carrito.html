@@ -66,24 +66,8 @@
                 <p class="card-text">Agrega productos desde la tienda para empezar a comprar.</p>
                 <a class="btn btn-primary" href="{% url 'visualizar' %}" role="button">Ver Productos</a>
             </div>
-<<<<<<< HEAD
-            
-        {% else %}
-            <!-- Mensaje si no hay productos en el carrito -->
-            <div class="card" style="width: 18rem; margin: auto;">
-                <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="No hay productos">
-                <div class="card-body">
-                    <h5 class="card-title">¡Tu carrito está vacío!</h5>
-                    <p class="card-text">Agrega productos desde la tienda para empezar a comprar.</p>
-                    <a class="btn btn-primary" href="{% url 'visualizar' %}" role="button">Ver Productos</a>
-                </div>
-            </div>
-        {% endif %}
     </div>    
-    {% endblock %}
-=======
         </div>
     {% endif %}
 </div>    
 {% endblock %}
->>>>>>> dc9f8ffaea8287c27682816233c75c41bfc9f0e0
