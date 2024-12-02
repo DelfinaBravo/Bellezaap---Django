@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <title>Login</title>
 </head>
 <body>
     <div class="contendor_login">
         <form action="" method="post">
-           <div class="logo_login">
-            <img src="static '../../../../static/img/logo.png" alt="Logo de la marca">
-           </div>
+            <div class="logo_login">
+                <a href="#"><i class="fa-solid fa-user fa-2xl" style="color: #987070;"></i></a>
+            </div>
             <h1>Login</h1>
             {% csrf_token %} 
             {{ form }}
