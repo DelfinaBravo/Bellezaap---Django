@@ -157,7 +157,6 @@ def salir(request):
     logout(request)
     return redirect(to='inicio')
 
-
 @login_required
 def Comprar(request, id_producto):
     usuario = request.user  # Ya autenticado por @login_required
@@ -169,10 +168,7 @@ def Comprar(request, id_producto):
     producto = get_object_or_404(Productos, id_producto=id_producto)
 
     # Buscar o crear el detalle del carrito
-    carrito_detalle = Carrito_detalle.objects.filter(
-    carrito_det=carrito,
-    producto=producto
-).first()
+    carrito_detalle = Carrito_detalle.objects.filter(carrito_det=carrito,producto=producto).first()
 
     if not carrito_detalle:
         carrito_detalle = Carrito_detalle.objects.create(
