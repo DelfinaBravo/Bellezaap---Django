@@ -32,26 +32,14 @@
                         
                         
                         <!-- Botón para eliminar producto -->
-                        <a
-                            class="btn btn-danger"
-                            href="{% url 'eliminar_carrito' i.pk_carritodet %}"
-                            role="button"
-                        >
-                            Eliminar
-                        </a>
+                        <a class="btn btn-danger" href="{% url 'eliminar_carrito' i.pk_carritodet %}" role="button">Eliminar</a>
                     </div>
                 </div>
             {% endfor %}
             
             <!-- Botón para vaciar todo el carrito -->
             <div class="mt-4 text-center" style="border-radius: 10px; background-color: #ebd5c7; width: 20%; display: flex; margin: auto; justify-content: center; ">
-                <a
-                    href="{% url 'eliminar_carrito' %}"
-                    class="btn"
-                    role="button"
-                >
-                    Vaciar Carrito
-                </a>
+                <a href="{% url 'eliminar_carrito' %}" class="btn" role="button"> Vaciar Carrito</a>
             </div>
             
         {% else %}

@@ -21,6 +21,9 @@ from reportlab.lib import colors
 from django.conf import settings
 from django.http import JsonResponse
 
+def continuarCompra(request):
+    return render(request, "Pages/visualizar.html")
+
 def pago_exitoso(request):
     return render(request, "pago_exitoso.html")
 
@@ -214,14 +217,15 @@ def Comprar (request,id_producto):
         carritoDet = Carrito_detalle.objects.create(carrito_det=Carrito.objects.last(),producto=get_object_or_404(Productos,id_producto=id_producto),cantidad=1)
         carritoDet.save()
         messages.success(request, "Producto agregado al carrito correctamente. Gracias por elegirnos!")
-        return render (request,"Pages/visualizar.html",{"data":"Producto añadido"})    
+        # return render (request,"Pages/continuarCompra.html",{"data":"Producto añadido"})    
+        return redirect(to="ver_Productos")
     except Carrito.DoesNotExist:
             try:
                 NCarr = Carrito(user=usuario)
                 NCarr.save()
             except NCarr.DoesNotExist:
                 messages.warning(request, "Ops!. No se pudo procesar la seleccion del producto")
-                return render (request,"Pages/visualizar.html",{"data":"Carrito no encontrado"})
+                return render (request,"Pages/continuarCompra.html",{"data":"Carrito no encontrado"})
             
 def VerCarrito (request):
     #sql = Carrito_detalle.objects.select_related('carrito_det','producto').all().filter(carrito_det__user=request.user.username)
