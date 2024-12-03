@@ -19,8 +19,8 @@
 
 <body>
     <header class="encabezado">
-       <a href="{% url 'inicio' %}"><img src="{% static 'img/maquillajes/logoMaquillaje.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
-       <nav class="menu_selectivo">
+    <a href="{% url 'inicio' %}"><img src="{% static 'img/maquillajes/logoMaquillaje.png' %}" alt="Logo" title="Logo" class="logotipo"></a>
+    <nav class="menu_selectivo">
         {% if user.is_superuser %}
         <a href="{% url 'agregar' %}">Agregar</a>
         {% endif %}
@@ -104,8 +104,9 @@
                 </div>
             </div>
         </div> 
-        <h1 class="subtitulo_index">Ultimos Productos</h1>
+        <h1 class="subtitulo_index" style="color: #925446;">Ultimos Productos</h1>
         <div class="contenedor_visualizar">
+            <div class="d-flex flex-wrap justify-content-center">
             {% for i in forms %}
             <div class="card" style="width: 18rem;">
                 <!-- Pasamos la Ruta de la Imagen Registrada -->
@@ -125,7 +126,7 @@
                 </div>
               </div>
               {% endfor %}
-              
+            </div>
         </div>
 
         {% endblock %}

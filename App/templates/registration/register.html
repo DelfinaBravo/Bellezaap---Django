@@ -4,8 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
-    {% load static %} <!-- Cargar estáticos aquí -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Asegúrate de que la ruta sea correcta -->
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1e5d1; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor del formulario de registro */
+        .contenedor_registro {
+            width: 400px; /* Ancho del contenedor */
+            margin: 50px auto; /* Centramos el contenedor */
+            padding: 20px; /* Espaciado interno */
+            background-color: #DBB5B5; /* Fondo del formulario */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+        }
+
+        /* Estilo del título */
+        h2 {
+            text-align: center; /* Centrar el título */
+            color: #987070; /* Color del texto más oscuro */
+        }
+
+        /* Estilos para los campos del formulario */
+        p {
+            margin: 15px 0; /* Margen entre los párrafos */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%; /* Ancho completo */
+            padding: 10px; /* Espaciado interno */
+            border: 1px solid #C39898; /* Borde con color suave */
+            border-radius: 4px; /* Bordes redondeados */
+            box-sizing: border-box; /* Incluye padding y border en el ancho total */
+            background-color: #ffffff; /* Fondo blanco para los campos */
+        }
+
+        /* Estilo para el botón de registro */
+        .btn_registro {
+            width: 100%; /* Ancho completo */
+            padding: 10px; /* Espaciado interno */
+            background-color: #A87676; /* Color de fondo del botón */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 4px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            font-size: 16px; /* Tamaño de fuente */
+        }
+
+        /* Efecto al pasar el mouse sobre el botón */
+        .btn_registro:hover {
+            background-color: #CA8787; /* Color de fondo más oscuro al pasar el mouse */
+        }
+
+        /* Estilos para mensajes de error */
+        .error {
+            color: red; /* Color rojo para errores */
+            font-size: 14px; /* Tamaño de fuente de errores */
+        }
+    </style>
 </head>
 <body>
     <div class="contenedor_registro">
@@ -17,10 +79,10 @@
                     {{ field.label_tag }}<br>
                     {{ field }}<br>
                     {% if field.help_text %}
-                        <small style="color: grey">{{ field.help_text }}</small>
+                        <small style="color: rgb(54, 53, 53)">{{ field.help_text }}</small>
                     {% endif %}
                     {% for error in field.errors %}
-                        <p style="color: red">{{ error }}</p>
+                        <p class="error">{{ error }}</p>
                     {% endfor %}
                 </p>
             {% endfor %}
