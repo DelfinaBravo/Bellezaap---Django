@@ -138,7 +138,7 @@ footer img {
 }
 
 .tarjeta_volteo-front img {
-   margin-top: 20%;
+    margin-top: 20%;
     border-radius: 20px;
     max-width: 100%; 
     max-height: 100%;
@@ -246,7 +246,7 @@ footer img {
     border: 1px 1px #555555;
 }
 .btn{
-   width: 48%;
+    width: 48%;
 }
 
 .respuesta {
@@ -305,7 +305,11 @@ footer{
     height: 100vh; /* Que el contenedor ocupe toda la altura de la ventana */
     margin-top: 10%;
     margin-bottom: 10%;
+}
+
+.loginbody{
     background-color: #DBB5B5; /* Color de fondo del contenedor principal */
+
 }
 
 .logo_login {
