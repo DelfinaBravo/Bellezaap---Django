@@ -1,4 +1,12 @@
-* {
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* -----> Configuracion de Index.html <----- */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,7 +18,7 @@
     /* Altura */
     height: 80px;
     /* Color de Fondo */
-    background: #ebd5c7;
+    background: #FFCAD4; /* Actualización con el nuevo color */
     display: flex;
     justify-content: space-between;
 }
@@ -34,25 +42,25 @@
     margin-right: 10px;
     text-decoration: none;
     font-size: 19px;
-    color: #925446; /* Color de texto */
+    color: #1B3C73; /* Color de texto actualizado */
 }
 
 .menu_selectivo a:hover {
     padding: 10px;
     border-radius: 10px;
-    background: #d08d80; /* Color de fondo al pasar el mouse */
+    background: #40679E; /* Color de fondo al pasar el mouse */
     color: #FCFCFC;
 }
 
 #contacto_btn {
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #d08d80; /* Color de fondo del botón */
-    color:#925446;
+    border: 1px solid #40679E; /* Color de fondo del botón */
+    color: #1B3C73;
 }
 
 #contacto_btn:hover{
-    color: #EEEEEE;
+    color: #FFCAD4; /* Color del texto al pasar el mouse */
 }
 
 .contenedor_general {
@@ -93,7 +101,7 @@
 }
 
 .artitulo h2 {
-    color: #747b69; /* Color del título */
+    color: #1B3C73; /* Color del título actualizado */
     font-size: 25px;
     text-align: center;
 }
@@ -111,7 +119,7 @@ footer {
     justify-content: center;
 }
 .fff{
-    background-color: #ebd5c7;
+    background-color: #FFCAD4; /* Color de fondo actualizado */
 }
 footer img {
     margin-top: 20px;
@@ -175,9 +183,9 @@ footer img {
     display: grid;
     place-items: center;
     padding: 5px;
-    background-color: #CA8787; /* Color de fondo de la parte trasera de la tarjeta */
+    background-color: #FFCAD4; /* Nuevo color de fondo para la parte trasera (más suave) */
     transform: rotateY(180deg);
-    color: #ffffff; /* Color del texto en la parte trasera */
+    color: #1B3C73; /* Nuevo color de texto para la parte trasera */
 }
 
 .tarjeta_volteo:hover .tarjeta_volteo-interno {
@@ -189,45 +197,48 @@ footer img {
     width: 1200px;
     height: 100%;
     border-radius: 20px;
-    background-color: #fcfcfc;
+    background-color: #FFFAF3; /* Color de fondo suave y cálido */
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px; /* Espacio interno */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra más suave y difusa */
 }
 
 .contendor_agregar > form {
     flex: 1 1 45%; /* Flexibilidad en el tamaño */
     margin: 10px; /* Margen entre los elementos */
     min-width: 300px; /* Ancho mínimo para cada elemento */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para cada elemento */
-    border-radius: 10px; /* Bordes redondeados para los elementos */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para cada elemento */
+    border-radius: 12px; /* Bordes redondeados para los elementos */
     padding: 15px; /* Espacio interno para los elementos */
     background-color: #FFFFFF; /* Color de fondo para los elementos */
 }
-.contendor_agregar svg{
+
+.contendor_agregar svg {
     width: 38%;
     object-fit: cover;
 }
-.contendor_agregar img{
+
+.contendor_agregar img {
     width: 38%;
     object-fit: scale-down;
 }
-.contendor_agregar form{
+
+.contendor_agregar form {
     padding: 20px;
     width: 62%;
 }
 
 .contendor_agregar form h1 {
     font-size: 35px;
-    color: #747b69; /* Color del encabezado en el formulario */
+    color: #5A4E46; /* Color del encabezado ajustado a tono suave */
     text-align: center;
     margin-bottom: 20px;
 }
 
-.contendor_agregar form textarea{
+.contendor_agregar form textarea {
     width: 300px;
     height: 50px;
     border-radius: 10px;
@@ -235,22 +246,24 @@ footer img {
     padding: 3px;
     margin: 8px 0;
     resize: none;
-    border: 1px 1px #555555;
+    border: 1px solid #D08D80; /* Color de borde suave */
 }
-.contendor_agregar form input{
+
+.contendor_agregar form input {
     width: 300px;
     border-radius: 10px;
     font-size: 20px;
     padding: 3px;
     margin: 8px 0;
-    border: 1px 1px #555555;
+    border: 1px solid #D08D80; /* Color de borde suave */
 }
-.btn{
+
+.btn {
     width: 48%;
 }
 
 .respuesta {
-    color: #747b69; /* Color de respuesta */
+    color: #5A4E46; /* Color de respuesta ajustado */
     font-size: 18px;
     font-style: italic;
 }
@@ -258,16 +271,15 @@ footer img {
 /* -----> Configuración del Sector Visualizar <----- */
 .contenedor_visualizar {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     margin: auto;
 }
 
 .card {
-    display: inline; 
+    display: inline;
     margin: 10px;
     justify-content: center;
-    
 }
 
 .card-title {
@@ -277,62 +289,63 @@ footer img {
 .contacto_btl {
     padding: 10px;
     border-radius: 10px;
-    background: #747b69; /* Color de fondo del botón de contacto */
+    background: #A87676; /* Color de fondo del botón de contacto actualizado */
     color: #FCFCFC;
 }
 
 .subtitulo_index {
     font-size: 45px;
-    color: #395090;
+    color: #395090; /* Color ajustado para más contraste */
     text-align: center;
     margin-bottom: 25px;
 }
-footer{
-    background-color: #EEEEEE;
+
+footer {
+    background-color: #FAF4F1; /* Color de fondo más suave para el footer */
     height: fit-content;
 }
 
-.btn-primary{
+.btn-primary {
     width: 98%;
     margin-bottom: 2%;
 }
+
 /* -----> Configuración del Sector Login <----- */
 
 .contendor_login {
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    height: 100vh; /* Que el contenedor ocupe toda la altura de la ventana */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
-.loginbody{
-    background-color: #DBB5B5; /* Color de fondo del contenedor principal */
-
+.loginbody {
+    background-color: #F9F0E3; /* Color de fondo más cálido */
 }
 
 .logo_login {
-    display: flex; /* Utiliza Flexbox para centrar el contenido */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100px; /* Ajusta la altura del contenedor según sea necesario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
 .logo_login i {
-    font-size: 3rem; /* Ajusta el tamaño del icono, puedes cambiarlo a tu preferencia */
-    color: #A87676; /* Color del icono */
+    font-size: 3rem;
+    color: #7C5A5A; /* Color más suave para el icono */
 }
 
 .contendor_login > form {
-    flex: 0 1 50%; 
-    margin: 10px; /* Margen entre los elementos */
-    min-width: 300px; /* Ancho mínimo para cada elemento */
-    max-width: 500px; /* Ancho máximo para limitar el tamaño del formulario */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 20px; /* Espacio interno para los elementos */
-    background-color: #DBB5B5; /* Color de fondo del formulario */
+    flex: 0 1 50%;
+    margin: 10px;
+    min-width: 300px;
+    max-width: 500px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    border-radius: 12px; /* Bordes más redondeados */
+    padding: 20px;
+    background-color: #FAF4F1; /* Fondo más claro */
 }
 
 .contendor_login svg {
@@ -342,56 +355,57 @@ footer{
 
 .contendor_login form {
     padding: 40px;
-    width: 100%; /* Ajustado a 100% para el formulario interno */
+    width: 100%;
 }
 
 .contendor_login form h1 {
-    font-size: 35px; 
-    color: #987070; /* Color del encabezado */
+    font-size: 35px;
+    color: #6F4F4F; /* Color del encabezado más suave */
     text-align: center;
     margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .contendor_login form textarea,
 .contendor_login form input {
-    width: calc(100% - 20px); /* Ajusta el ancho con el padding */
+    width: calc(100% - 20px);
     border-radius: 10px;
     font-size: 20px;
-    padding: 10px; /* Aumenta el padding */
+    padding: 10px;
     margin: 8px 0;
-    border: 2px solid #C39898; /* Borde */
-    transition: border 0.3s; /* Transición al enfocar */
+    border: 2px solid #D8B4A5; /* Borde más suave */
+    transition: border 0.3s;
 }
 
 .contendor_login form textarea:focus,
 .contendor_login form input:focus {
-    border-color: #CA8787; /* Color del borde al enfocar */
-    outline: none; /* Quita el borde de enfoque predeterminado */
+    border-color: #A87676; /* Borde al enfocar con un tono cálido */
+    outline: none;
 }
 
 .btn_login {
     margin-top: 15px;
     width: 70%;
-    background-color: #A87676; /* Color de fondo del botón */
-    color: #ffffff; /* Color del texto del botón */
-    border: none; /* Sin borde */
-    border-radius: 10px; /* Bordes redondeados para el botón */
-    padding: 10px; /* Espaciado interno */
-    font-size: 18px; /* Tamaño de fuente */
-    cursor: pointer; /* Cambia el cursor */
-    transition: background-color 0.3s; /* Transición */
+    background-color: #7C5A5A; /* Color de fondo del botón */
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn_login:hover {
-    background-color: #C39898; /* Color de fondo del botón al pasar el mouse */
+    background-color: #A87676; /* Color de fondo del botón al pasar el mouse */
 }
+
 /* -----> Configuración de Registro <----- */
 body {
     font-family: Arial, Helvetica, sans-serif; /* Fuente para ambos formularios */
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0; /* Color de fondo  */
+    background-color: #f5f5f5; /* Color de fondo suave */
 }
 
 /* -----> Estilo para el contenedor de formularios <----- */
@@ -406,7 +420,7 @@ body {
     flex: 1; /* Cambia el porcentaje a 100% */
     margin: 10px; /* Margen entre los elementos */
     max-width: 400px; /* Ancho máximo para el formulario */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
     border-radius: 15px; /* Bordes redondeados */
     padding: 30px; /* Espacio interno para los elementos */
     background-color: #ffffff; /* Color de fondo blanco para un contraste limpio */
@@ -415,7 +429,7 @@ body {
 /* Encabezados del formulario */
 .contenedor_registro form h2 {
     font-size: 28px; 
-    color: #333333; /* Color del encabezado */
+    color: #5e5e5e; /* Color de encabezado más suave */
     text-align: center;
     margin-bottom: 20px;
 }
@@ -428,13 +442,13 @@ body {
     font-size: 18px;
     padding: 12px; /* Aumenta el padding para más comodidad */
     margin: 10px 0; /* Espacio vertical entre campos */
-    border: 2px solid #cccccc; /* Borde claro */
+    border: 2px solid #d0d0d0; /* Borde más suave */
     transition: border 0.3s; /* Transición suave al enfocar */
 }
 
 .contenedor_registro form textarea:focus,
 .contenedor_registro form input:focus {
-    border-color: #ff7f50; /* Color del borde al enfocar */
+    border-color: #ffa07a; /* Color del borde al enfocar, tono coral suave */
     outline: none; /* Quita el borde de enfoque predeterminado */
 }
 
@@ -442,7 +456,7 @@ body {
 .btn_registro {
     margin-top: 20px; /* Más espacio arriba del botón */
     width: 75%; /* Aumenta el ancho del botón */
-    background-color: #ff7f50; /* Color de fondo del botón */
+    background-color: #ffa07a; /* Color de fondo del botón, coral suave */
     color: #ffffff; /* Color del texto del botón */
     border: none; /* Sin borde */
     border-radius: 10px; /* Bordes redondeados para el botón */
@@ -453,8 +467,9 @@ body {
 }
 
 .btn_registro:hover {
-    background-color: #ff6347; /* Cambio de color al pasar el ratón */
+    background-color: #ff6347; /* Cambio de color al pasar el ratón a un tono más cálido */
 }
+
 
 
 .btn-danger{

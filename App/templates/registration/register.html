@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
     <style>
-
         body {
             font-family: Arial, sans-serif;
-            background-color: #f1e5d1; 
+            background-color: #fafafa; /* Fondo suave */
             margin: 0;
             padding: 0;
         }
@@ -18,15 +17,15 @@
             width: 400px; /* Ancho del contenedor */
             margin: 50px auto; /* Centramos el contenedor */
             padding: 20px; /* Espaciado interno */
-            background-color: #DBB5B5; /* Fondo del formulario */
+            background-color: #fefefe; /* Fondo blanco suave */
             border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
         }
 
         /* Estilo del título */
         h2 {
             text-align: center; /* Centrar el título */
-            color: #987070; /* Color del texto más oscuro */
+            color: #333333; /* Color de texto oscuro */
         }
 
         /* Estilos para los campos del formulario */
@@ -38,33 +37,35 @@
         input[type="email"],
         input[type="password"] {
             width: 100%; /* Ancho completo */
-            padding: 10px; /* Espaciado interno */
-            border: 1px solid #C39898; /* Borde con color suave */
-            border-radius: 4px; /* Bordes redondeados */
+            padding: 12px; /* Espaciado interno */
+            border: 2px solid #d4d4d4; /* Borde gris claro */
+            border-radius: 5px; /* Bordes redondeados */
             box-sizing: border-box; /* Incluye padding y border en el ancho total */
-            background-color: #ffffff; /* Fondo blanco para los campos */
+            background-color: #fafafa; /* Fondo gris suave para los campos */
+            font-size: 16px; /* Tamaño de fuente más pequeño para mejor legibilidad */
         }
 
         /* Estilo para el botón de registro */
         .btn_registro {
             width: 100%; /* Ancho completo */
-            padding: 10px; /* Espaciado interno */
-            background-color: #A87676; /* Color de fondo del botón */
+            padding: 12px; /* Espaciado interno */
+            background-color: #6c757d; /* Color gris oscuro suave */
             color: white; /* Color del texto */
             border: none; /* Sin borde */
-            border-radius: 4px; /* Bordes redondeados */
+            border-radius: 5px; /* Bordes redondeados */
             cursor: pointer; /* Cambia el cursor al pasar por encima */
             font-size: 16px; /* Tamaño de fuente */
+            transition: background-color 0.3s ease; /* Transición suave */
         }
 
         /* Efecto al pasar el mouse sobre el botón */
         .btn_registro:hover {
-            background-color: #CA8787; /* Color de fondo más oscuro al pasar el mouse */
+            background-color: #5a6268; /* Color de fondo más oscuro al pasar el mouse */
         }
 
         /* Estilos para mensajes de error */
         .error {
-            color: red; /* Color rojo para errores */
+            color: #d9534f; /* Color rojo más suave para errores */
             font-size: 14px; /* Tamaño de fuente de errores */
         }
     </style>
@@ -79,7 +80,7 @@
                     {{ field.label_tag }}<br>
                     {{ field }}<br>
                     {% if field.help_text %}
-                        <small style="color: rgb(54, 53, 53)">{{ field.help_text }}</small>
+                        <small style="color: #888;">{{ field.help_text }}</small>
                     {% endif %}
                     {% for error in field.errors %}
                         <p class="error">{{ error }}</p>
