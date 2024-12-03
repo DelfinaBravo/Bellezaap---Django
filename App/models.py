@@ -12,12 +12,18 @@ class Productos(models.Model):
     imagen_producto = models.ImageField(null=False,upload_to="productos", default="")
     def __int__ (self):
         return self.id_producto
-
+    
 class Carrito(models.Model):
     carrito_id = models.AutoField(primary_key=True, null=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     def __int__(self):
-        return self.carrito_id
+        return self.carrito_id  # Este método puede quedarse si lo necesitas
+
+    # def __str__(self):
+    #     # Asegúrate de devolver un string
+    #     return f"Carrito {self.carrito_id} de {self.user.username}"
+
     
 class Carrito_detalle(models.Model):
     pk_carritodet = models.AutoField(primary_key=True, null=False)
@@ -26,8 +32,10 @@ class Carrito_detalle(models.Model):
     cantidad = models.PositiveIntegerField(default=1)
     class Meta:
         unique_together = ('carrito_det', 'producto') 
+
     def __str__(self):
-        return self.carrito_det
+        # Devuelve una representación clara y útil
+        return f"Detalle del Carrito {self.carrito_det.pk}: {self.producto.nom_producto} (Cantidad: {self.cantidad})"
     
 class Comprar(models.Model):
     id = models.AutoField(primary_key=True)
