@@ -215,32 +215,48 @@ def Comprar(request, id_producto):
     try:
         # Obtener el usuario autenticado
         usuario = request.user
+
         # Obtener o crear el carrito del usuario
         carrito, creado = Carrito.objects.get_or_create(user=usuario)
+
         # Obtener el producto solicitado
         producto = get_object_or_404(Productos, id_producto=id_producto)
+
         # Buscar o crear el detalle del carrito
         carrito_detalle, detalle_creado = Carrito_detalle.objects.get_or_create(
             carrito_det=carrito,
             producto=producto,
             defaults={"cantidad": 1},  # Cantidad inicial si es un nuevo detalle
         )
+
         # Manejar la acción (incrementar o disminuir)
         accion = request.GET.get('accion')  # Lee el parámetro 'accion' de la URL
+
         if accion == "incrementar":
-            carrito_detalle.cantidad += 1
-            carrito_detalle.save()
-            messages.success(request, "Cantidad incrementada correctamente.")
+            # Verificar si el producto tiene bajo stock
+            if producto.stock_producto <= 5:
+                messages.info(request, f"Este producto tiene bajo stock. Solo quedan {producto.stock_producto} unidades disponibles.")
+            
+            # Verificar si hay suficiente stock antes de incrementar
+            if carrito_detalle.cantidad < producto.stock_producto:
+                carrito_detalle.cantidad += 1
+                carrito_detalle.save()
+                messages.success(request, f"Cantidad de {producto.nom_producto} incrementada correctamente.")
+            else:
+                messages.warning(request, "No hay suficiente stock disponible para este producto.")
+
         elif accion == "disminuir":
             if carrito_detalle.cantidad > 1:  # Evita cantidades menores a 1
                 carrito_detalle.cantidad -= 1
                 carrito_detalle.save()
-                messages.success(request, "Cantidad disminuida correctamente.")
+                messages.success(request, f"Cantidad de {producto.nom_producto} disminuida correctamente.")
             else:
                 carrito_detalle.delete()  # Elimina el detalle si la cantidad llega a 0
                 messages.info(request, "Producto eliminado del carrito.")
+
         # Redirigir al usuario
         return redirect(to="carrito")
+
     except Exception as e:
         # Manejo de errores inesperados
         messages.error(request, f"Ocurrió un error al procesar tu solicitud: {str(e)}")

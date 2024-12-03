@@ -27,8 +27,11 @@
                 <div class="card-body">
                 <h4 class="card-title">Nombre: {{i.nom_producto}}</h4>
                 <h5 class="card-title">Precio: {{i.precio_producto}}</h5>
-                {% if i.stock_producto > 1 %}
+
+                {% if i.stock_producto > 5 %}
                 <a href="{% url 'comprar' i.id_producto %}" class="btn btn-primary">Comprar</a>
+                {% elif i.stock_producto > 0 %}
+                <a href="{% url 'comprar' i.id_producto %}" class="btn btn-warning">Bajo Stock</a>
                 {% else %}
                 <a class="btn btn-danger">Sin Stock</a>
                 {% endif %}
