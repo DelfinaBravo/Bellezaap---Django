@@ -258,6 +258,10 @@ def VerCarrito (request):
     except Carrito_detalle.DoesNotExist:
         return render (request,"index.html",{"data":"Carrito no encontrado"})
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> bf6c5d2bc7b448688cd43b40452a13468949292f
 
 @login_required
 def EliminarCarrito(request, pk=None):
